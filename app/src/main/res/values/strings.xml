@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Orange Fintech</string>
+    <string name="bienvenida">¡Bienvenido a Orange!</string>
+    <string name="usuario">Usuario:</string>
+    <string name="contrasenia">Contraseña:</string>
+    <string name="confirmar">Confirmar contraseña:</string>
+    <string name="nombre">Nombre:</string>
+    <string name="apellido">Apellido:</string>
+    <string name="crear">CREAR USUARIO</string>
+    <string name="ingresar">INGRESAR</string>
+</resources>
