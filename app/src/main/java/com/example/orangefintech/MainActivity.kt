@@ -24,13 +24,14 @@ class MainActivity : AppCompatActivity() {
         btnIngresar = findViewById(R.id.buttonIngresar)
 
         btnIngresar.setOnClickListener {
+
             if(validateInput()) {
-                val usuario = UsuarioRepositorio.existe(etUsuario.text.toString(), etPassword.text.toString())
-
-                if(usuario != null) {
+                if(UsuarioRepositorio.existe(etUsuario.text.toString(), etPassword.text.toString())) {
+                    
+                    val usuario = UsuarioRepositorio.iniciar(etUsuario.text.toString(), etPassword.text.toString())
                     val mainActivityIntent = Intent(this, MainActivity::class.java)
-
                     startActivity(mainActivityIntent)
+
                 } else {
                     Toast.makeText(this, "Datos incorrectos", Toast.LENGTH_SHORT).show()
                 }
