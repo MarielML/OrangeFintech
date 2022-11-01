@@ -4,14 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#5E74C2FF">
+    android:background="#000000">
 
     <TextView
         android:id="@+id/tvConfirmar"
         android:layout_width="367dp"
         android:layout_height="54dp"
         android:text="@string/confirmar"
-        android:textColor="#2196F3"
+        android:textAlignment="center"
+        android:textColor="@color/orange"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/editTextConfirmar"
@@ -23,10 +24,11 @@
 
     <TextView
         android:id="@+id/tvPassword"
-        android:layout_width="367dp"
+        android:layout_width="230dp"
         android:layout_height="54dp"
         android:text="@string/contrasenia"
-        android:textColor="#2196F3"
+        android:textAlignment="center"
+        android:textColor="@color/orange"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/editTextTextPassword"
@@ -38,11 +40,12 @@
 
     <TextView
         android:id="@+id/tvIngresarUsuario"
-        android:layout_width="367dp"
+        android:layout_width="130dp"
         android:layout_height="54dp"
         android:layout_marginBottom="10dp"
         android:text="@string/usuario"
-        android:textColor="#2196F3"
+        android:textAlignment="center"
+        android:textColor="@color/orange"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/et_usuario"
@@ -54,10 +57,12 @@
 
     <EditText
         android:id="@+id/editTextConfirmar"
-        android:layout_width="367dp"
+        android:layout_width="253dp"
         android:layout_height="54dp"
+        android:backgroundTint="@color/orange"
         android:ems="10"
         android:inputType="textPassword"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@id/tvNombre"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -68,10 +73,12 @@
 
     <EditText
         android:id="@+id/editTextTextPassword"
-        android:layout_width="367dp"
+        android:layout_width="253dp"
         android:layout_height="54dp"
+        android:backgroundTint="@color/orange"
         android:ems="10"
         android:inputType="textPassword"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@id/tvConfirmar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -82,10 +89,12 @@
 
     <EditText
         android:id="@+id/etNombre"
-        android:layout_width="367dp"
+        android:layout_width="253dp"
         android:layout_height="54dp"
+        android:backgroundTint="@color/orange"
         android:ems="10"
         android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@id/tvApellido"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -98,7 +107,9 @@
         android:id="@+id/botonCrear"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="#03A9F4"
+        android:background="#00000000"
+        android:backgroundTint="#FF8E00"
+        android:drawableTint="#F6F6F6"
         android:text="@string/crear"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
@@ -112,10 +123,11 @@
 
     <TextView
         android:id="@+id/tvNombre"
-        android:layout_width="367dp"
+        android:layout_width="200dp"
         android:layout_height="54dp"
         android:text="@string/nombre"
-        android:textColor="#2196F3"
+        android:textAlignment="center"
+        android:textColor="@color/orange"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/etNombre"
@@ -127,10 +139,11 @@
 
     <TextView
         android:id="@+id/tvApellido"
-        android:layout_width="367dp"
+        android:layout_width="200dp"
         android:layout_height="54dp"
         android:text="@string/apellido"
-        android:textColor="#2196F3"
+        android:textAlignment="center"
+        android:textColor="@color/orange"
         android:textSize="34sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@id/etApellido"
@@ -142,24 +155,28 @@
 
     <EditText
         android:id="@+id/et_usuario"
-        android:layout_width="367dp"
+        android:layout_width="253dp"
         android:layout_height="54dp"
+        android:backgroundTint="@color/orange"
         android:ems="10"
         android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@+id/tvPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvIngresarUsuario"
         app:layout_constraintVertical_bias="0.015"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
 
     <EditText
         android:id="@+id/etApellido"
-        android:layout_width="367dp"
+        android:layout_width="253dp"
         android:layout_height="54dp"
+        android:backgroundTint="@color/orange"
         android:ems="10"
         android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toTopOf="@id/botonCrear"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
