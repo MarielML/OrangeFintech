@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="exchange_array">
+        <item>Criptomas</item>
+        <item>Criptodia</item>
+        <item>Carrecripto</item>
+    </string-array>
+</resources>
