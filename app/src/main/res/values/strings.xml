@@ -10,4 +10,6 @@
     <string name="ingresar">INGRESAR</string>
     <string name="menu1">Comprar</string>
     <string name="menu2">Agregar saldo</string>
+    <string name="menu3">Cuenta</string>
+    <string name="menu4">Lista</string>
 </resources>
