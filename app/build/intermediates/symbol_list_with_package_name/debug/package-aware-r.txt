@@ -63,6 +63,7 @@ animator mtrl_fab_hide_motion_spec
 animator mtrl_fab_show_motion_spec
 animator mtrl_fab_transformation_sheet_collapse_spec
 animator mtrl_fab_transformation_sheet_expand_spec
+array exchange_array
 attr SharedValue
 attr SharedValueId
 attr actionBarDivider
@@ -1744,6 +1745,7 @@ color mtrl_textinput_focused_box_stroke_color
 color mtrl_textinput_hovered_box_stroke_color
 color notification_action_color_filter
 color notification_icon_bg_color
+color orange
 color primary_dark_material_dark
 color primary_dark_material_light
 color primary_material_dark
@@ -2469,6 +2471,8 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable icon_1
+drawable icon_2
 drawable m3_appbar_background
 drawable m3_popupmenu_background_overlay
 drawable m3_radiobutton_ripple
@@ -2607,13 +2611,14 @@ id beginOnFirstDraw
 id beginning
 id bestChoice
 id blocking
-id botonCrear
 id bottom
+id bottom_navigation
 id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
-id buttonCrear
+id btnCrearUser
+id btnCrearUsuario
 id buttonIngresar
 id buttonPanel
 id cache_measures
@@ -2693,9 +2698,7 @@ id easeIn
 id easeInOut
 id easeOut
 id east
-id editTextConfirmar
 id editTextPassword
-id editTextTextPassword
 id editTextUsuario
 id edit_query
 id edittext_dropdown_editable
@@ -2707,6 +2710,8 @@ id enterAlways
 id enterAlwaysCollapsed
 id etApellido
 id etNombre
+id et_confirmPw
+id et_password
 id et_usuario
 id exitUntilCollapsed
 id expand_activities_button
@@ -2756,6 +2761,9 @@ id info
 id invisible
 id inward
 id italic
+id item_comprar
+id item_info
+id item_saldo
 id item_touch_helper_previous_elevation
 id jumpToEnd
 id jumpToStart
@@ -2916,6 +2924,7 @@ id snapMargins
 id south
 id spacer
 id special_effects_controller_view_tag
+id spinnerExhange
 id spline
 id split_action_bar
 id spread
@@ -2991,6 +3000,7 @@ id tvApellido
 id tvBienvenida
 id tvConfirmar
 id tvContrasenia
+id tvExchange
 id tvIngresarUsuario
 id tvNombre
 id tvPassword
@@ -3110,8 +3120,10 @@ layout abc_search_dropdown_item_icons_2line
 layout abc_search_view
 layout abc_select_dialog_material
 layout abc_tooltip
+layout activity_comprar
 layout activity_crear_usuario
 layout activity_main
+layout activity_pantalla_principal
 layout custom_dialog
 layout design_bottom_navigation_item
 layout design_bottom_sheet_dialog
@@ -3202,6 +3214,7 @@ layout text_view_with_line_height_from_layout
 layout text_view_with_line_height_from_style
 layout text_view_with_theme_line_height
 layout text_view_without_line_height
+menu bottom_navigation_menu
 mipmap ic_launcher
 mipmap ic_launcher_orange
 mipmap ic_launcher_orange_foreground
@@ -3294,6 +3307,10 @@ string material_timepicker_minute
 string material_timepicker_pm
 string material_timepicker_select_time
 string material_timepicker_text_input_mode_description
+string menu1
+string menu2
+string menu3
+string menu4
 string mtrl_badge_numberless_content_description
 string mtrl_chip_close_icon_content_description
 string mtrl_exceed_max_badge_number_content_description

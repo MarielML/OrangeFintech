@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
-import com.example.orangefintech.entidades.Usuario
 import com.example.orangefintech.repositorios.UsuarioRepositorio
 
 class MainActivity : AppCompatActivity() {
@@ -14,6 +13,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var etUsuario : EditText
     private lateinit var etPassword : EditText
     private lateinit var btnIngresar : Button
+    private lateinit var btnCrearUser: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,15 +22,17 @@ class MainActivity : AppCompatActivity() {
         etUsuario = findViewById(R.id.editTextUsuario)
         etPassword = findViewById(R.id.editTextPassword)
         btnIngresar = findViewById(R.id.buttonIngresar)
+        btnCrearUser = findViewById(R.id.btnCrearUser)
 
         btnIngresar.setOnClickListener {
 
+            val username =  etUsuario.text.toString()
+            val password = etPassword.text.toString()
+
             if(validateInput()) {
-                if(UsuarioRepositorio.existe(etUsuario.text.toString(), etPassword.text.toString())) {
-                    
-                    val usuario = UsuarioRepositorio.iniciar(etUsuario.text.toString(), etPassword.text.toString())
-                    val mainActivityIntent = Intent(this, MainActivity::class.java)
-                    startActivity(mainActivityIntent)
+                if(UsuarioRepositorio.existe(username, password)) {
+
+                    loguear(username, password)
 
                 } else {
                     Toast.makeText(this, "Datos incorrectos", Toast.LENGTH_SHORT).show()
@@ -39,6 +41,29 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Por favor ingrese los datos solicitados", Toast.LENGTH_SHORT).show()
             }
         }
+
+        btnCrearUser.setOnClickListener{
+
+            crearUsuario()
+
+        }
+    }
+
+    private fun loguear(username: String, password : String) {
+
+        val pantallaPrincipalActivity = Intent(this, PantallaPrincipalActivity::class.java)
+        pantallaPrincipalActivity.putExtra("username", username)
+        pantallaPrincipalActivity.putExtra("password", password)
+
+        startActivity(pantallaPrincipalActivity)// hacer main menu
+
+    }
+
+    private fun crearUsuario(){
+
+        val crearUsuarioActivityIntent = Intent(this, CrearUsuarioActivity::class.java)
+        startActivity(crearUsuarioActivityIntent)
+
     }
 
     private fun validateInput(): Boolean {

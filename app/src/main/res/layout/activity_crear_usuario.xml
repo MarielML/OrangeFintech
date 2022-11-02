@@ -15,11 +15,11 @@
         android:textColor="@color/orange"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/editTextConfirmar"
+        app:layout_constraintBottom_toTopOf="@id/et_confirmPw"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
+        app:layout_constraintTop_toBottomOf="@+id/et_password"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
@@ -31,7 +31,7 @@
         android:textColor="@color/orange"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/editTextTextPassword"
+        app:layout_constraintBottom_toTopOf="@id/et_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +56,7 @@
         app:layout_constraintVertical_bias="0.051" />
 
     <EditText
-        android:id="@+id/editTextConfirmar"
+        android:id="@+id/et_confirmPw"
         android:layout_width="253dp"
         android:layout_height="54dp"
         android:backgroundTint="@color/orange"
@@ -72,7 +72,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/et_password"
         android:layout_width="253dp"
         android:layout_height="54dp"
         android:backgroundTint="@color/orange"
@@ -104,7 +104,7 @@
         tools:ignore="SpeakableTextPresentCheck" />
 
     <Button
-        android:id="@+id/botonCrear"
+        android:id="@+id/btnCrearUsuario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#00000000"
@@ -134,7 +134,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextConfirmar"
+        app:layout_constraintTop_toBottomOf="@+id/et_confirmPw"
         app:layout_constraintVertical_bias="0.033" />
 
     <TextView
@@ -177,7 +177,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:textColor="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@id/botonCrear"
+        app:layout_constraintBottom_toTopOf="@id/btnCrearUsuario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvApellido"
