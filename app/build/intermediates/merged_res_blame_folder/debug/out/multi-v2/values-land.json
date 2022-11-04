@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.orangefintech.app-mergeDebugResources-27:/values-land/values-land.xml",
+            "outputFile": "com.example.orangefintech.app-mergeDebugResources-45:/values-land/values-land.xml",
             "map": [
                 {
                     "source": "/Users/mamorales/.gradle/caches/transforms-3/d3b5a00c8c8d32cf7dccb8ee585ed284/transformed/appcompat-1.5.1/res/values-land/values-land.xml",

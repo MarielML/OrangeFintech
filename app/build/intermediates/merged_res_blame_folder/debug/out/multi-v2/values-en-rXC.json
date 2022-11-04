@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.orangefintech.app-mergeDebugResources-27:/values-en-rXC/values-en-rXC.xml",
+            "outputFile": "com.example.orangefintech.app-mergeDebugResources-45:/values-en-rXC/values-en-rXC.xml",
             "map": [
                 {
                     "source": "/Users/mamorales/.gradle/caches/transforms-3/39858a0edda35c9bad4a02052f2a3484/transformed/core-1.8.0/res/values-en-rXC/values-en-rXC.xml",

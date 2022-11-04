@@ -3,19 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     tools:ignore="ExtraText">
     <item
-        android:id="@+id/item_comprar"
+        android:id="@+id/inicioFragment"
         android:enabled="true"
-        android:icon="@drawable/icon_1"
+        android:icon="@drawable/ic_baseline_home"
         android:title="@string/menu1"/>
     <item
-        android:id="@+id/item_saldo"
+        android:id="@+id/compraFragment"
         android:enabled="true"
-        android:icon="@drawable/icon_2"
-        android:title="@string/menu2" />
+        android:icon="@drawable/ic_baseline_currency_exchange_24"
+        android:title="@string/menu2"/>
     <item
-        android:id="@+id/item_info"
+        android:id="@+id/perfilFragment"
         android:enabled="true"
-
+        android:icon="@drawable/ic_baseline_profile"
         android:title="@string/menu3" />
-
 </menu>
