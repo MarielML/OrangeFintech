@@ -31,7 +31,7 @@ class CompraFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
 
-        BottomNavigationView.OnNavigationItemSelectedListener { item ->
+         NavigationBarView.OnItemSelectedListener { item ->
             when(item.itemId) {
                 R.id.inicioFragment -> {
                     findNavController().navigate(R.id.action_compraFragment2_to_inicioFragment2)
