@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/inicioFragment2">
+
+    <fragment
+        android:id="@+id/inicioFragment2"
+        android:name="com.example.orangefintech.ui.fragmentos.inicioFragment"
+        android:label="fragment_inicio"
+        tools:layout="@layout/fragment_inicio" >
+        <action
+            android:id="@+id/action_inicioFragment2_to_compraFragment2"
+            app:destination="@id/compraFragment2" />
+        <action
+            android:id="@+id/action_inicioFragment2_to_perfilFragment2"
+            app:destination="@id/perfilFragment2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/compraFragment2"
+        android:name="com.example.orangefintech.ui.fragmentos.CompraFragment"
+        android:label="fragment_compra"
+        tools:layout="@layout/fragment_compra" >
+        <action
+            android:id="@+id/action_compraFragment2_to_perfilFragment22"
+            app:destination="@id/perfilFragment2" />
+        <action
+            android:id="@+id/action_compraFragment2_to_inicioFragment2"
+            app:destination="@id/inicioFragment2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/perfilFragment2"
+        android:name="com.example.orangefintech.ui.fragmentos.PerfilFragment"
+        android:label="fragment_perfil"
+        tools:layout="@layout/fragment_perfil" >
+        <action
+            android:id="@+id/action_perfilFragment2_to_compraFragment2"
+            app:destination="@id/compraFragment2" />
+        <action
+            android:id="@+id/action_perfilFragment2_to_inicioFragment2"
+            app:destination="@id/inicioFragment2" />
+    </fragment>
+</navigation>
