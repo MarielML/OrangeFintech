@@ -8,3 +8,12 @@ plugins {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+buildscript {
+    repositories {
+        google()
+    }
+    dependencies {
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+    }
+}
