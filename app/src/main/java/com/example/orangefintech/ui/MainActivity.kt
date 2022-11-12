@@ -7,10 +7,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.example.orangefintech.R
+import com.example.orangefintech.databinding.ActivityMainBinding
 import com.example.orangefintech.repositorios.UsuarioRepositorio
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var binding: ActivityMainBinding
     private lateinit var etUsuario : EditText
     private lateinit var etPassword : EditText
     private lateinit var btnIngresar : Button
@@ -18,7 +20,9 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(R.layout.activity_main)
+
 
         etUsuario = findViewById(R.id.editTextUsuario)
         etPassword = findViewById(R.id.editTextPassword)
@@ -33,7 +37,7 @@ class MainActivity : AppCompatActivity() {
             if(validateInput()) {
                 if(UsuarioRepositorio.existe(username, password)) {
 
-                    loguear()
+                    loguear(username, password)
 
                 } else {
                     Toast.makeText(this, "Datos incorrectos", Toast.LENGTH_SHORT).show()
@@ -50,9 +54,10 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun loguear() {
+    private fun loguear(username: String, password: String) {
 
         val loginMenu = Intent(this, PantallaPrincipalActivity::class.java)
+        intent.putExtra("codigo", UsuarioRepositorio.iniciar(username, password).codigoCuenta)
         startActivity(loginMenu)
 
     }
