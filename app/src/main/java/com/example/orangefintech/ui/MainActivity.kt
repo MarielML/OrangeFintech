@@ -58,6 +58,8 @@ class MainActivity : AppCompatActivity() {
 
         val loginMenu = Intent(this, PantallaPrincipalActivity::class.java)
         intent.putExtra("codigo", UsuarioRepositorio.iniciar(username, password).codigoCuenta)
+        intent.putExtra("nickname", UsuarioRepositorio.iniciar(username, password).nickname)
+        intent.putExtra("password", UsuarioRepositorio.iniciar(username, password).password)
         startActivity(loginMenu)
 
     }
