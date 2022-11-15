@@ -9,16 +9,15 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.orangefintech.R
 import com.example.orangefintech.databinding.ActivityMainBinding
-import com.example.orangefintech.entidades.Compra
-import com.example.orangefintech.entidades.Criptodia
-import com.example.orangefintech.entidades.Criptomas
-import com.example.orangefintech.entidades.Criptomonedas
+import com.example.orangefintech.entidades.*
 import com.example.orangefintech.repositorios.CompraRepositorio
 import com.example.orangefintech.repositorios.UsuarioRepositorio
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import org.w3c.dom.Text
 import java.time.LocalDate
 import java.time.LocalTime
+import java.time.Period
 
 class PantallaPrincipalActivity : AppCompatActivity(), AdapterView.OnItemSelectedListener{
 
@@ -27,6 +26,8 @@ class PantallaPrincipalActivity : AppCompatActivity(), AdapterView.OnItemSelecte
     private lateinit var cuenta: TextView
     private lateinit var comprar: Button
     private lateinit var monto: EditText
+    private lateinit var etSaldo: EditText
+    private lateinit var agregarSaldo: FloatingActionButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,6 +35,12 @@ class PantallaPrincipalActivity : AppCompatActivity(), AdapterView.OnItemSelecte
 
         val bundle = intent.extras
         val codigoDeCuenta = bundle?.getInt("codigo")
+        val nickname: String? = bundle?.getString("nickname")
+        val password: String? = bundle?.getString("password")
+        val usuario = if(nickname != null && password != null) UsuarioRepositorio.iniciar(nickname, password) else null
+        val etSaldo = findViewById<EditText>(R.id.etSaldo)
+        val saldo = etSaldo.text.toString().toDouble()
+        val agregar = findViewById<FloatingActionButton>(R.id.floatingActionButtonSaldo)
 
         cuenta = findViewById<TextView>(R.id.tvCuenta)
         cuenta.text = codigoDeCuenta?.let { UsuarioRepositorio.obtenerPorCodigo(it).toString() }
@@ -41,7 +48,7 @@ class PantallaPrincipalActivity : AppCompatActivity(), AdapterView.OnItemSelecte
         comprar = findViewById(R.id.buttonComprar)
         comprar.setOnClickListener {
             monto = findViewById(R.id.etMonto)
-            val usuarioNickname = bundle?.getString("nickname")
+            val usuarioNickname: String? = usuario?.nickname
             val nuevoCodigoCompra: Int = CompraRepositorio.compra.last().codigoCompra.plus(1)
             val fechaAhora = LocalDate.now()
             val horaAhora = LocalTime.now()
@@ -51,25 +58,27 @@ class PantallaPrincipalActivity : AppCompatActivity(), AdapterView.OnItemSelecte
                 "Carrecripto" -> Criptomonedas.CARRECRIPTO
                 else -> Toast.makeText(this, "Por favor selecciona un exchange", Toast.LENGTH_SHORT).show()
             }
-            val valorTotalCriptomonedas = 0.0
             val dineroACambiar = monto.text.toString().toDouble()
-            val comision = when(criptomonedaTipo){
+            val dineroTotal = calcularDineroTotal(dineroACambiar, criptomonedaTipo as Exchange)
+            val comision = when(criptomonedaTipo) {
                 Criptomonedas.CRIPTOMAS -> "2%"
-                Criptomonedas.CRIPTODIA -> if(Criptodia.calcularComision() == 0.01) "1%" else "3%"
+                Criptomonedas.CRIPTODIA -> if (Criptodia.calcularComision() == 0.01) "1%" else "3%"
                 Criptomonedas.CARRECRIPTO -> if (Criptomas.calcularComision() == 0.03) "(3%)" else "(0.75%)"
                 else -> ""
             }
-            val nuevaCompra = usuarioNickname?.let { it1 ->
-                Compra(
-                    it1, nuevoCodigoCompra, fechaAhora, horaAhora,
-                    criptomonedaTipo as Criptomonedas,
-                    valorTotalCriptomonedas, dineroACambiar, comision)
-            }
+            val cashback = if(usuario != null ) dineroTotal.times(otorgarCashback(usuario)) else 0.0
+            val valorTotalCriptomonedas = editarUsuarioAlComprar(monto.text.toString().toDouble(), dineroTotal, cashback, usuario)
+            val nuevaCompra = if(usuarioNickname != null) Compra(usuarioNickname, nuevoCodigoCompra, fechaAhora, horaAhora, criptomonedaTipo as Criptomonedas,
+                    valorTotalCriptomonedas, dineroACambiar, comision) else null
             if (nuevaCompra != null) {
                 CompraRepositorio.agregar(nuevaCompra)
             }
 
+            agregar.setOnClickListener {
+                agregarSaldo(usuario, saldo)
+            }
         }
+
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavMenu)
         val navController = findNavController(R.id.fragmentContainerViewPantallaPrincipal)
@@ -88,14 +97,50 @@ class PantallaPrincipalActivity : AppCompatActivity(), AdapterView.OnItemSelecte
         spinner.onItemSelectedListener = this
     }
 
+    fun editarUsuarioAlComprar(dineroACambiar: Double, dineroTotal: Double, cashback: Double, usuario: Usuario?): Double {
+        val VALOR_CRIPTOMONEDA = 1.0
+        val VALOR_DINERO = 50.0
+
+        val valorTotalCriptomonedas = (dineroACambiar.times(VALOR_CRIPTOMONEDA)).div(VALOR_DINERO)
+        usuario?.criptomonedasEnCuenta = usuario?.criptomonedasEnCuenta?.plus(valorTotalCriptomonedas)!!
+        usuario?.dineroEnCuenta = usuario?.dineroEnCuenta?.minus(dineroTotal)!!
+        usuario?.dineroEnCuenta = usuario?.dineroEnCuenta?.plus(cashback)!!
+
+        return valorTotalCriptomonedas
+    }
+
+    fun agregarSaldo(usuario: Usuario?, saldo: Double) {
+            usuario?.dineroEnCuenta?.plus(saldo)!!
+    }
+
+    fun calcularDineroTotal(dineroACambiar: Double, exchange: Exchange): Double {
+        val comision = dineroACambiar.times(
+            when (exchange) {
+                Criptomas -> Criptomas.calcularComision()
+                Criptodia -> Criptodia.calcularComision()
+                Carrecripto -> Carrecripto.calcularComision()
+                else -> Criptomas.calcularComision()
+
+            }
+        )
+        return dineroACambiar.plus(comision)
+    }
+
+    fun otorgarCashback(usuario: Usuario): Double {
+        val periodo = Period.between(usuario.fechaAlta, LocalDate.now()).toTotalMonths()
+        return when (periodo) {
+            in 0..3 -> 0.05
+            in 4..12 -> 0.03
+            else -> 0.0
+        }
+    }
+
 
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         TODO("Not yet implemented")
-
-
     }
 
     override fun onNothingSelected(p0: AdapterView<*>?) {
         TODO("Not yet implemented")
-
     }
+}
