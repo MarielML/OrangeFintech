@@ -18,4 +18,5 @@
     <string name="monto">Ingresa el monto:</string>
     <string name="comprar">Comprar</string>
     <string name="saldo">Agregar saldo:</string>
+    <string name="compras">Compras Realizadas</string>
 </resources>
