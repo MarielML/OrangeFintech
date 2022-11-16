@@ -10,6 +10,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.orangefintech.R
 import com.example.orangefintech.databinding.ActivityMainBinding
 import com.example.orangefintech.entidades.*
+import com.example.orangefintech.excepciones.SaldoInsuficiente
 import com.example.orangefintech.repositorios.CompraRepositorio
 import com.example.orangefintech.repositorios.UsuarioRepositorio
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -60,25 +61,46 @@ class PantallaPrincipalActivity : AppCompatActivity(), AdapterView.OnItemSelecte
             }
             val dineroACambiar = monto.text.toString().toDouble()
             val dineroTotal = calcularDineroTotal(dineroACambiar, criptomonedaTipo as Exchange)
-            val comision = when(criptomonedaTipo) {
-                Criptomonedas.CRIPTOMAS -> "2%"
-                Criptomonedas.CRIPTODIA -> if (Criptodia.calcularComision() == 0.01) "1%" else "3%"
-                Criptomonedas.CARRECRIPTO -> if (Criptomas.calcularComision() == 0.03) "(3%)" else "(0.75%)"
-                else -> ""
-            }
-            val cashback = if(usuario != null ) dineroTotal.times(otorgarCashback(usuario)) else 0.0
-            val valorTotalCriptomonedas = editarUsuarioAlComprar(monto.text.toString().toDouble(), dineroTotal, cashback, usuario)
-            val nuevaCompra = if(usuarioNickname != null) Compra(usuarioNickname, nuevoCodigoCompra, fechaAhora, horaAhora, criptomonedaTipo as Criptomonedas,
-                    valorTotalCriptomonedas, dineroACambiar, comision) else null
-            if (nuevaCompra != null) {
-                CompraRepositorio.agregar(nuevaCompra)
-            }
+            try {
+                if (usuario?.checkDineroACambiar(dineroTotal) == true) {
+                    val comision = when(criptomonedaTipo) {
+                        Criptomonedas.CRIPTOMAS -> "2%"
+                        Criptomonedas.CRIPTODIA -> if (Criptodia.calcularComision() == 0.01) "1%" else "3%"
+                        Criptomonedas.CARRECRIPTO -> if (Criptomas.calcularComision() == 0.03) "(3%)" else "(0.75%)"
+                        else -> ""
+                    }
+                    val cashback = if(usuario != null ) dineroTotal.times(otorgarCashback(usuario)) else 0.0
+                    val valorTotalCriptomonedas = editarUsuarioAlComprar(monto.text.toString().toDouble(), dineroTotal, cashback, usuario)
+                    val nuevaCompra = if(usuarioNickname != null) Compra(usuarioNickname, nuevoCodigoCompra, fechaAhora, horaAhora, criptomonedaTipo as Criptomonedas,
+                        valorTotalCriptomonedas, dineroACambiar, comision) else null
+                    if (nuevaCompra != null) {
+                        CompraRepositorio.agregar(nuevaCompra)
+                    }
+                    var mensaje = """
+                         COMPRA REALIZADA
+                         Usted compró ${valorTotalCriptomonedas} Criptomonedas de ${criptomonedaTipo.toString()}
+                         Se cobró una comisión de ${'$'} ${comision}
+                    """.trimIndent()
 
-            agregar.setOnClickListener {
-                agregarSaldo(usuario, saldo)
+                    mensaje += if (cashback != 0.0) """
+                        Se otorgó un cashback de $cashback
+                        Muchas gracias por la compra.
+                    """.trimIndent()
+                    else "Muchas gracias por la compra."
+                    Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+                }
+                val codigoDeLaCuenta: Int? = usuario?.codigoCuenta
+                if (codigoDeLaCuenta != null) {
+                    UsuarioRepositorio.editarPorCodigo(codigoDeLaCuenta, usuario)
+                }
+            } catch (e: SaldoInsuficiente) {
+                Toast.makeText(this, "Saldo insuficiente", Toast.LENGTH_SHORT).show()
             }
         }
 
+        agregar.setOnClickListener {
+            agregarSaldo(usuario, saldo)
+        }
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavMenu)
         val navController = findNavController(R.id.fragmentContainerViewPantallaPrincipal)
