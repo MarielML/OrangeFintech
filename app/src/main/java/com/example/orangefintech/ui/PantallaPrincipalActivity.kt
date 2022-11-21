@@ -108,11 +108,6 @@ class PantallaPrincipalActivity : AppCompatActivity(), AdapterView.OnItemSelecte
         val navController = findNavController(R.id.fragmentContainerViewPantallaPrincipal)
         bottomNavigationView.setupWithNavController(navController)
 
-        inicio = findViewById(R.id.inicioFragment2)
-        inicio.setOnClickListener { view ->
-            view.findNavController().navigate(R.id.action_compraFragment2_to_perfilFragment22)
-        }
-
     }
 
     private fun editarUsuarioAlComprar(dineroACambiar: Double, dineroTotal: Double, cashback: Double, usuario: Usuario): Double {
