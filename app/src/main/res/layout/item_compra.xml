@@ -22,23 +22,24 @@
 
         <ImageView
             android:id="@+id/image_compra"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="109dp"
+            android:layout_height="161dp"
+            android:background="#FF9800"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.008"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/ic_launcher_background" />
+            app:srcCompat="@drawable/ic_baseline_currency_exchange_24" />
 
         <TextView
             android:id="@+id/txtCodigo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Código"
+            android:text="Código: "
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/txtFecha"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.045"
             app:layout_constraintStart_toEndOf="@+id/image_compra"
@@ -49,9 +50,9 @@
             android:id="@+id/txtFecha"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Fecha de compra"
+            android:text="Fecha de compra: "
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@id/txt_hora"
+            app:layout_constraintBottom_toTopOf="@id/txtHora"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.06"
             app:layout_constraintStart_toEndOf="@+id/image_compra"
@@ -59,7 +60,59 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
-            android:id="@+id/txt_hora"
+            android:id="@+id/txtHora"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hora de compra: "
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@+id/txtCriptomoneda"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.056"
+            app:layout_constraintStart_toEndOf="@+id/image_compra"
+            app:layout_constraintTop_toBottomOf="@+id/txtFecha"
+            app:layout_constraintVertical_bias="0.438" />
+
+        <TextView
+            android:id="@+id/txtCriptomoneda"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Criptomoneda: "
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/txtValorAdquirido"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.056"
+            app:layout_constraintStart_toEndOf="@+id/image_compra"
+            app:layout_constraintTop_toBottomOf="@+id/txtHora"
+            app:layout_constraintVertical_bias="0.438" />
+
+        <TextView
+            android:id="@+id/txtValorAdquirido"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Valor adquirido: "
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/txtValorPagado"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.056"
+            app:layout_constraintStart_toEndOf="@+id/image_compra"
+            app:layout_constraintTop_toBottomOf="@+id/txtCriptomoneda"
+            app:layout_constraintVertical_bias="0.438" />
+
+        <TextView
+            android:id="@+id/txtValorPagado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Valor pagado: "
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/txtComision"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.056"
+            app:layout_constraintStart_toEndOf="@+id/image_compra"
+            app:layout_constraintTop_toBottomOf="@+id/txtValorAdquirido"
+            app:layout_constraintVertical_bias="0.438" />
+
+        <TextView
+            android:id="@+id/txtComision"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hora de compra"
@@ -68,8 +121,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.056"
             app:layout_constraintStart_toEndOf="@+id/image_compra"
-            app:layout_constraintTop_toBottomOf="@+id/txtFecha"
+            app:layout_constraintTop_toBottomOf="@+id/txtValorPagado"
             app:layout_constraintVertical_bias="0.438" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
