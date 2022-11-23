@@ -42,6 +42,16 @@ object CompraRepositorio {
         if(!obtuvoInformacion) println("No se han encontrado registros.\n")
     }
 
+    fun obtenerListaDeComprasPorUsuario(nickname: String): MutableList<Compra> {
+        val comprasPorUsuario = mutableListOf<Compra>()
+        for (elemento in compra) {
+            if(elemento.usuario.equals(nickname)){
+                comprasPorUsuario.add(elemento)
+            }
+        }
+        return comprasPorUsuario
+    }
+    
     private fun stringuearTipoCripto(criptomoneda: Criptomonedas): String {
         return when(criptomoneda){
             Criptomonedas.CRIPTOMAS -> "Criptomas"
