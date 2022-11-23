@@ -116,6 +116,9 @@ class PantallaPrincipalActivity : AppCompatActivity(), AdapterView.OnItemSelecte
         inicio.setOnClickListener { view ->
             view.findNavController().navigate(R.id.action_compraFragment2_to_perfilFragment22)
         }
+        
+        setUpRecyclerView(usuario)
+
     }
 
     private fun editarUsuarioAlComprar(dineroACambiar: Double, dineroTotal: Double, cashback: Double, usuario: Usuario): Double {
