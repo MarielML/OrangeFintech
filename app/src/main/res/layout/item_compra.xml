@@ -115,7 +115,7 @@
             android:id="@+id/txtComision"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hora de compra"
+            android:text="Comisión: "
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -123,6 +123,90 @@
             app:layout_constraintStart_toEndOf="@+id/image_compra"
             app:layout_constraintTop_toBottomOf="@+id/txtValorPagado"
             app:layout_constraintVertical_bias="0.438" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tvCodigo"
+            android:layout_width="159dp"
+            android:layout_height="20dp"
+            android:text=""
+            app:layout_constraintBottom_toTopOf="@+id/txtFecha"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/txtCodigo"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.714" />
+
+        <TextView
+            android:id="@+id/tvFecha"
+            android:layout_width="127dp"
+            android:layout_height="18dp"
+            android:text=""
+            app:layout_constraintBottom_toTopOf="@+id/txtHora"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/txtFecha"
+            app:layout_constraintTop_toBottomOf="@id/tvCodigo"
+            app:layout_constraintVertical_bias="0.944" />
+
+        <TextView
+            android:id="@+id/tvHora"
+            android:layout_width="127dp"
+            android:layout_height="18dp"
+            android:text=""
+            app:layout_constraintBottom_toTopOf="@+id/txtCriptomoneda"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/txtHora"
+            app:layout_constraintTop_toBottomOf="@id/tvFecha"
+            app:layout_constraintVertical_bias="0.983" />
+
+        <TextView
+            android:id="@+id/tvCriptomoneda"
+            android:layout_width="127dp"
+            android:layout_height="18dp"
+            android:text=""
+            app:layout_constraintBottom_toTopOf="@+id/txtValorAdquirido"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/txtCriptomoneda"
+            app:layout_constraintTop_toBottomOf="@id/tvHora"
+            app:layout_constraintVertical_bias="0.983" />
+
+        <TextView
+            android:id="@+id/tvValorAdquirido"
+            android:layout_width="127dp"
+            android:layout_height="18dp"
+            android:text=""
+            app:layout_constraintBottom_toTopOf="@+id/txtValorPagado"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/txtValorAdquirido"
+            app:layout_constraintTop_toBottomOf="@id/tvCriptomoneda"
+            app:layout_constraintVertical_bias="0.983" />
+
+        <TextView
+            android:id="@+id/tvValorPagado"
+            android:layout_width="127dp"
+            android:layout_height="18dp"
+            android:text=""
+            app:layout_constraintBottom_toTopOf="@+id/txtComision"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/txtHora"
+            app:layout_constraintTop_toBottomOf="@id/tvValorAdquirido"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/tvComision"
+            android:layout_width="127dp"
+            android:layout_height="18dp"
+            android:text=""
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/txtComision"
+            app:layout_constraintTop_toBottomOf="@id/txtValorPagado"
+            app:layout_constraintVertical_bias="0.983" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
