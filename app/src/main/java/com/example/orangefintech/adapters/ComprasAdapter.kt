@@ -19,14 +19,13 @@ class ComprasAdapter (private val compras: List<Compra>, private val selectClien
     override fun onBindViewHolder(holder: ComprasViewHolder, position: Int) {
         val compra = compras[position]
 
-        holder.binding.txtCodigo.text = compra.codigoCompra.toString()
-        holder.binding.txtFecha.text = compra.fechaCompra.toString()
-        holder.binding.txtHora.text = compra.horaCompra.toString()
-        holder.binding.txtCriptomoneda.text = compra.criptomoneda.toString()
-        holder.binding.txtValorAdquirido.text = compra.valorAdquirido.toString()
-        holder.binding.txtValorPagado.text = compra.valorPagado.toString()
-        holder.binding.txtComision.text = compra.comision
-        
+        holder.binding.tvCodigo.text = compra.codigoCompra.toString()
+        holder.binding.tvFecha.text = compra.fechaCompra.toString()
+        holder.binding.tvHora.text = compra.horaCompra.toString()
+        holder.binding.tvCriptomoneda.text = compra.criptomoneda.toString()
+        holder.binding.tvValorAdquirido.text = compra.valorAdquirido.toString()
+        holder.binding.tvValorPagado.text = compra.valorPagado.toString()
+        holder.binding.tvComision.text = compra.comision
 
         holder.binding.comprasCard.setOnClickListener {
             selectClientClickLister(compra)
