@@ -66,16 +66,29 @@
         android:layout_marginStart="155dp"
         android:layout_marginTop="0dp"
         android:layout_marginEnd="198dp"
-        android:layout_marginBottom="474dp"
+        android:layout_marginBottom="0dp"
         android:text="@string/compras"
         android:textAlignment="center"
         android:textColor="@color/orange"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/rvCompras"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.415"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etSaldo"
         app:layout_constraintVertical_bias="0.73" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCompras"
+        android:layout_width="match_parent"
+        android:layout_height="495dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvComprasRealizadas" />
 </androidx.constraintlayout.widget.ConstraintLayout>
