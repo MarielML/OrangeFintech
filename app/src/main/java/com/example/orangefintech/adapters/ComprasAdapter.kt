@@ -22,6 +22,11 @@ class ComprasAdapter (private val compras: List<Compra>, private val selectClien
         holder.binding.txtCodigo.text = compra.codigoCompra.toString()
         holder.binding.txtFecha.text = compra.fechaCompra.toString()
         holder.binding.txtHora.text = compra.horaCompra.toString()
+        holder.binding.txtCriptomoneda.text = compra.criptomoneda.toString()
+        holder.binding.txtValorAdquirido.text = compra.valorAdquirido.toString()
+        holder.binding.txtValorPagado.text = compra.valorPagado.toString()
+        holder.binding.txtComision.text = compra.comision
+        
 
         holder.binding.comprasCard.setOnClickListener {
             selectClientClickLister(compra)
