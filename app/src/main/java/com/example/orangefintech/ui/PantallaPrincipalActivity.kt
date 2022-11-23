@@ -6,7 +6,10 @@ import android.view.View
 import android.widget.*
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.orangefintech.R
+import com.example.orangefintech.adapters.ComprasAdapter
 import com.example.orangefintech.entidades.*
 import com.example.orangefintech.excepciones.SaldoInsuficiente
 import com.example.orangefintech.repositorios.CompraRepositorio
@@ -26,11 +29,12 @@ class PantallaPrincipalActivity : AppCompatActivity(), AdapterView.OnItemSelecte
     private lateinit var monto: EditText
     private lateinit var etSaldo: EditText
     private lateinit var agregar: FloatingActionButton
+    private lateinit var recyclerViewCompras: RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pantallaprincipal)
-        
+
         val bundle = intent.extras
         val codigoDeCuenta: Int? = bundle?.getInt("codigo")
         val nickname: String? = bundle?.getString("nickname")
@@ -49,7 +53,7 @@ class PantallaPrincipalActivity : AppCompatActivity(), AdapterView.OnItemSelecte
             spinner.adapter = adapter
         }
         spinner.onItemSelectedListener = this
-        
+
         comprar = findViewById(R.id.buttonComprar)
         comprar.setOnClickListener {
             monto = findViewById(R.id.etMonto)
@@ -108,6 +112,13 @@ class PantallaPrincipalActivity : AppCompatActivity(), AdapterView.OnItemSelecte
         val navController = findNavController(R.id.fragmentContainerViewPantallaPrincipal)
         bottomNavigationView.setupWithNavController(navController)
 
+        inicio = findViewById(R.id.inicioFragment2)
+        inicio.setOnClickListener { view ->
+            view.findNavController().navigate(R.id.action_compraFragment2_to_perfilFragment22)
+        }
+
+
+
     }
 
     private fun editarUsuarioAlComprar(dineroACambiar: Double, dineroTotal: Double, cashback: Double, usuario: Usuario): Double {
@@ -147,7 +158,14 @@ class PantallaPrincipalActivity : AppCompatActivity(), AdapterView.OnItemSelecte
         }
     }
 
-
+    private fun setUpRecyclerView(usuario: Usuario) {
+        val selectCompraClickLister = { compra: Compra ->
+            Toast.makeText(this, "Tocaste la compra de código ${compra.codigoCompra}", Toast.LENGTH_LONG).show()
+        }
+        recyclerViewCompras = findViewById(R.id.rvCompras)
+        recyclerViewCompras.adapter = ComprasAdapter(CompraRepositorio.obtenerListaDeComprasPorUsuario(usuario.nickname), selectCompraClickLister)
+        recyclerViewCompras.layoutManager = LinearLayoutManager(this)
+    }
     override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
         TODO("Not yet implemented")
     }
