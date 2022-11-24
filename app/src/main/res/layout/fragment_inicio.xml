@@ -81,6 +81,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvCompras"
+        android:scrollbars="vertical"                                      
         android:layout_width="match_parent"
         android:layout_height="495dp"
         android:layout_marginStart="1dp"
