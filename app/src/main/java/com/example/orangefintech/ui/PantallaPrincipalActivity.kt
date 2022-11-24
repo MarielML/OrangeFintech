@@ -94,7 +94,7 @@ class PantallaPrincipalActivity : AppCompatActivity(), AdapterView.OnItemSelecte
                         Muchas gracias por la compra.
                     """.trimIndent()
                     else "Muchas gracias por la compra."
-                    Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, mensaje, Toast.LENGTH_LONG).show()
                 }
 
                 UsuarioRepositorio.editarPorCodigo(codigoDeCuenta, usuario)
