@@ -43,10 +43,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun loguear(username: String, password: String) {
 
-        val loginMenu = Intent(this, PantallaPrincipalActivity::class.java)
-        intent.putExtra("codigo", UsuarioRepositorio.iniciar(username, password).codigoCuenta)
-        intent.putExtra("nickname", UsuarioRepositorio.iniciar(username, password).nickname)
-        intent.putExtra("password", UsuarioRepositorio.iniciar(username, password).password)
+        val loginMenu = Intent(this, PantallaPrincipalActivity::class.java).apply {
+            putExtra("codigo", UsuarioRepositorio.iniciar(username, password).codigoCuenta)
+            putExtra("nickname", UsuarioRepositorio.iniciar(username, password).nickname)
+            putExtra("password", UsuarioRepositorio.iniciar(username, password).password)
+        }
         startActivity(loginMenu)
 
     }
