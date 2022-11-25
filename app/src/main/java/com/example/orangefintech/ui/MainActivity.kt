@@ -3,9 +3,13 @@ package com.example.orangefintech.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import com.example.orangefintech.R
 import com.example.orangefintech.databinding.ActivityMainBinding
 import com.example.orangefintech.repositorios.UsuarioRepositorio
+import com.example.orangefintech.ui.fragmentos.inicioFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -18,13 +22,14 @@ class MainActivity : AppCompatActivity() {
 
         binding.buttonIngresar.setOnClickListener {
 
-            val username =  binding.editTextUsuario.text.toString()
+            val username = binding.editTextUsuario.text.toString()
             val password = binding.editTextPassword.text.toString()
 
             if(validateInput()) {
                 if(UsuarioRepositorio.existe(username, password)) {
 
                     loguear(username, password)
+                    binding.buttonIngresar.visibility = View.GONE
 
                 } else {
                     Toast.makeText(this, "Datos incorrectos", Toast.LENGTH_SHORT).show()
@@ -50,6 +55,17 @@ class MainActivity : AppCompatActivity() {
         }
         startActivity(loginMenu)
 
+        val fragmentoInicio = inicioFragment()
+        val fragment: Fragment? =
+
+        supportFragmentManager.findFragmentByTag(inicioFragment::class.java.simpleName)
+
+        if(fragment !is inicioFragment) {
+            supportFragmentManager.beginTransaction()
+                .add(R.id.frameLayout, fragmentoInicio, inicioFragment::class.java.simpleName)
+                .commit()
+        }
+
     }
 
     private fun crearUsuario(){
@@ -59,7 +75,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun validateInput(): Boolean {
+    fun validateInput(): Boolean {
         return binding.editTextUsuario.text.isNotEmpty() && binding.editTextPassword.text.isNotEmpty()
     }
 }
